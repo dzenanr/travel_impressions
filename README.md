@@ -2,8 +2,8 @@
 
 **Categories**: dartling, education, class models, web components.
 
-## Description: travel_impressions project uses [dartling] 
-(https://github.com/dzenanr/dartling) for the model.
+## Description: travel_impressions project uses 
+[dartling] (https://github.com/dzenanr/dartling) for the model.
 A web application that will allow young travelers to inform their families and 
 friends about their impressions of visited places.
 
