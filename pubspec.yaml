@@ -1,0 +1,12 @@
+name: travel_impressions
+author: Your Name
+homepage: http://ondart.me/
+version: 0.0.1
+description: travel_impressions application that uses dartling for its model.
+dependencies:
+  browser: any
+  dartling:
+    git: git://github.com/dzenanr/dartling.git
+  dartling_default_app:
+    git: git://github.com/dzenanr/dartling_default_app.git
+  

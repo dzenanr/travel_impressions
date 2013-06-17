@@ -1,0 +1,9 @@
+Project Path 
+used in code generation in dartling_gen
+
+Linux
+--genall /home/dr/git/web_ui/travel_impressions travel impressions
+--genall /home/dr/git/dart/travel_impressions travel impressions
+
+Windows
+--genall C:/Users/ridjanod/git/dart/web_ui/travel_impressions travel impressions
