@@ -1,4 +1,4 @@
-github.txt for category_links
+github.txt for travel_impressions
 
 GitHub, Git
 
@@ -27,17 +27,17 @@ http://help.github.com/create-a-repo/
 
 Create a New Repo at GitHub 
 (without README, since cloning will not be used).
-Repository Name: category_links
+Repository Name: travel_impressions
 Description: 
-  This app uses dartling, a domain model framework, for its model and web components for views of the model.
+  A web application that will allow young travelers to inform their families and friends about their impressions of visited places.
       
 Next steps:
-  cd git/dart/web_ui/category_links
+  cd git/dart/web_ui/travel_impressions
   git init
   git status
   git add .
   git commit -m 'initial version'
-  git remote add origin https://github.com/dzenanr/category_links.git
+  git remote add origin https://github.com/dzenanr/travel_impressions.git
   git push -u origin master     
 
 -------------------------------------------------------------------------------
@@ -47,14 +47,14 @@ Git with Git Bash
 Clone a remote repository into a local repository.
 
 cd git/dart/web_ui
-git clone https://github.com/dzenanr/category_links.git
-cd category_links
+git clone https://github.com/dzenanr/travel_impressions.git
+cd travel_impressions
 
 Read+Write:
-https://github.com/dzenanr/category_links.git
+https://github.com/dzenanr/travel_impressions.git
 
 Read only:
-git://github.com/dzenanr/category_links.git
+git://github.com/dzenanr/travel_impressions.git
 
 Get the latest changes from the remote repository
 
@@ -66,7 +66,7 @@ git pull origin master
 
 Work with a local repository
 
-cd git/dart/web_ui/category_links
+cd git/dart/web_ui/travel_impressions
 
 git status
 
