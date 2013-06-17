@@ -1,14 +1,12 @@
 
-# Category Links Application with dartling and Web Components
+# Travel Impressions Application with dartling and Web Components
 
 **Categories**: education, class models, web components.
 
-**Concepts**: Category, Link.
+**Concepts**: Traveler, Message, Impression, Country, Place, WebLink.
 
 **Description**:
-A model with 2 concepts to show how to use dartling, 
-a model framework for educational purposes.
-A web application with web components that use the model.
+A web application that will allow young travelers to inform their families and friends about their impressions of visited places.
 
 **Start**:
 Clone the project and open it with Dart Editor. 
