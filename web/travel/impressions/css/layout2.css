@@ -14,14 +14,13 @@
 
   #main {
     float: left;
-    width: 60%;
+    width: 66%;
     background: #fffff0;
   }
 
   #side {
     float: right;
-    width: 36%;
+    width: 32%;
   }
 
 /* ===[ end ]=== */
-  
