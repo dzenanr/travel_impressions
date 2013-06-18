@@ -15,7 +15,7 @@ genCode() {
   // change Skeleton to YourModelName 
   // change "Skeleton" to "YourModelName" 
   Model travelImpressionsModel = 
-      fromMagicBoxes(travelImpressionsModelJson, travelDomain, "Impressions"); 
+      fromJsonToModel(travelImpressionsModelJson, travelDomain, "Impressions"); 
  
   repo.domains.add(travelDomain); 
  

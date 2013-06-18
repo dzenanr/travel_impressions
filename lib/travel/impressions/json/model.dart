@@ -121,37 +121,47 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":60,
                     "name":"email",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"identifier",
-                    "type":"Email",
-                    "init":""
+                    "type":"Email"
                 },
                 {
                     "sequence":70,
                     "name":"password",
+                    "init":"sensitive",
+                    "essential":false,
+                    "sensitive":true,
                     "category":"required",
-                    "type":"String",
-                    "init":"sensitive"
+                    "type":"String"
                 },
                 {
                     "sequence":80,
                     "name":"firstName",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"required",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":90,
                     "name":"lastName",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"required",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":100,
                     "name":"description",
+                    "init":"",
+                    "essential":false,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -166,23 +176,29 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":10,
                     "name":"name",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"identifier",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":30,
                     "name":"city",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":50,
                     "name":"description",
+                    "init":"",
+                    "essential":false,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -197,9 +213,11 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":20,
                     "name":"text",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"required",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -214,23 +232,29 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":10,
                     "name":"date",
+                    "init":"now",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"identifier",
-                    "type":"DateTime",
-                    "init":"today"
+                    "type":"DateTime"
                 },
                 {
                     "sequence":20,
                     "name":"subject",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"required",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":30,
                     "name":"text",
+                    "init":"",
+                    "essential":false,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -245,9 +269,11 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":20,
                     "name":"name",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"identifier",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -262,23 +288,29 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":10,
                     "name":"url",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"identifier",
-                    "type":"Uri",
-                    "init":""
+                    "type":"Uri"
                 },
                 {
                     "sequence":20,
                     "name":"title",
+                    "init":"",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 },
                 {
                     "sequence":30,
                     "name":"description",
+                    "init":"",
+                    "essential":false,
+                    "sensitive":false,
                     "category":"attribute",
-                    "type":"String",
-                    "init":""
+                    "type":"String"
                 }
             ]
         },
@@ -293,9 +325,11 @@ var travelImpressionsModelJson = r'''
                 {
                     "sequence":10,
                     "name":"updateRights",
+                    "init":"false",
+                    "essential":true,
+                    "sensitive":false,
                     "category":"required",
-                    "type":"bool",
-                    "init":"false"
+                    "type":"bool"
                 }
             ]
         }

@@ -9,7 +9,7 @@ class TravelModels extends DomainModels {
   } 
  
   ImpressionsEntries fromJsonToImpressionsEntries() { 
-    return new ImpressionsEntries(fromMagicBoxes( 
+    return new ImpressionsEntries(fromJsonToModel( 
       travelImpressionsModelJson, 
       domain, 
       TravelRepo.travelImpressionsModelCode)); 

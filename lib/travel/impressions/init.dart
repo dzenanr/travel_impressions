@@ -1,135 +1,80 @@
-                                                                                                                        part of travel_impressions; 
- 
-// lib/travel/impressions/init.dart 
- 
-initTravelImpressions(var entries) { 
-  _initTravelers(entries); 
-  _initCountries(entries); 
-} 
- 
-_initTravelers(var entries) { 
-  Traveler traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value0"; 
-  traveler.password = "value0"; 
-  traveler.firstName = "value0"; 
-  traveler.lastName = "value0"; 
-  traveler.description = "value0"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value1"; 
-  traveler.password = "value1"; 
-  traveler.firstName = "value1"; 
-  traveler.lastName = "value1"; 
-  traveler.description = "value1"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value2"; 
-  traveler.password = "value2"; 
-  traveler.firstName = "value2"; 
-  traveler.lastName = "value2"; 
-  traveler.description = "value2"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value3"; 
-  traveler.password = "value3"; 
-  traveler.firstName = "value3"; 
-  traveler.lastName = "value3"; 
-  traveler.description = "value3"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value4"; 
-  traveler.password = "value4"; 
-  traveler.firstName = "value4"; 
-  traveler.lastName = "value4"; 
-  traveler.description = "value4"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value5"; 
-  traveler.password = "value5"; 
-  traveler.firstName = "value5"; 
-  traveler.lastName = "value5"; 
-  traveler.description = "value5"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value6"; 
-  traveler.password = "value6"; 
-  traveler.firstName = "value6"; 
-  traveler.lastName = "value6"; 
-  traveler.description = "value6"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value7"; 
-  traveler.password = "value7"; 
-  traveler.firstName = "value7"; 
-  traveler.lastName = "value7"; 
-  traveler.description = "value7"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value8"; 
-  traveler.password = "value8"; 
-  traveler.firstName = "value8"; 
-  traveler.lastName = "value8"; 
-  traveler.description = "value8"; 
-  entries.travelers.add(traveler); 
- 
-  traveler = new Traveler(entries.travelers.concept); 
-  traveler.email = "value9"; 
-  traveler.password = "value9"; 
-  traveler.firstName = "value9"; 
-  traveler.lastName = "value9"; 
-  traveler.description = "value9"; 
-  entries.travelers.add(traveler); 
- 
-} 
- 
-_initCountries(var entries) { 
-  Country country = new Country(entries.countries.concept); 
-  country.name = "value0"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value1"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value2"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value3"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value4"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value5"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value6"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value7"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value8"; 
-  entries.countries.add(country); 
- 
-  country = new Country(entries.countries.concept); 
-  country.name = "value9"; 
-  entries.countries.add(country); 
- 
-} 
- 
+part of travel_impressions;
+
+// lib/travel/impressions/init.dart
+
+initTravelImpressions(var entries) {
+  _initTravelers(entries);
+  _initCountries(entries);
+}
+
+_initTravelers(var entries) {
+  var traveler = new Traveler(entries.travelers.concept);
+  traveler.email = "dzenan@gmail.com";
+  traveler.password = "dzenan";
+  traveler.firstName = "Dzenan";
+  traveler.lastName = "Ridjanovic";
+  traveler.description = "working hard on Dart projects";
+  entries.travelers.add(traveler);
+
+  traveler = new Traveler(entries.travelers.concept);
+  traveler.email = "tim@gmail.com";
+  traveler.password = "tim";
+  traveler.firstName = "Timur";
+  traveler.lastName = "Ridjanovic";
+  traveler.description = "learning programming";
+  entries.travelers.add(traveler);
+
+  traveler = new Traveler(entries.travelers.concept);
+  traveler.email = "ogi@gmail.com";
+  traveler.password = "ogi";
+  traveler.firstName = "Ogden";
+  traveler.lastName = "Ridjanovic";
+  traveler.description = "artiste + designer web + entrepreneur";
+  entries.travelers.add(traveler);
+}
+
+_initCountries(var entries) {
+  var country = new Country(entries.countries.concept);
+  country.code = "BA";
+  country.name = "Bosnia and Herzegovina";
+  entries.countries.add(country);
+
+  var placeConcept = entries.getConcept('Place');
+  var place = new Place(placeConcept);
+  place.name = 'Bascarsija';
+  place.city = 'Sarajevo';
+  place.description = 'old town';
+  place.country = country;
+  country.places.add(place);
+
+  place = new Place(placeConcept);
+  place.name = 'Bjelasnica';
+  place.city = 'Sarajevo';
+  place.description = 'olympic mountain';
+  place.country = country;
+  country.places.add(place);
+
+  country = new Country(entries.countries.concept);
+  country.code = "HR";
+  country.name = "Croatia";
+  entries.countries.add(country);
+
+  place = new Place(placeConcept);
+  place.name = 'Loviste';
+  place.city = '';
+  place.description = 'charming cost village';
+  place.country = country;
+  country.places.add(place);
+
+  country = new Country(entries.countries.concept);
+  country.code = "FR";
+  country.name = "France";
+  entries.countries.add(country);
+
+  country = new Country(entries.countries.concept);
+  country.code = "CA";
+  country.name = "Canada";
+  entries.countries.add(country);
+
+}
+
