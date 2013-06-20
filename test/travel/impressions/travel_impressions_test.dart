@@ -27,6 +27,8 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
 
   Countries countries;
   Country bosnia;
+  Oid darivaOid;
+  Oid oid;
   Travelers travelers;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
@@ -41,6 +43,7 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
 
       var code = 'BA';
       bosnia = countries.singleWhereCode(code);
+      darivaOid = bosnia.places.firstWhereAttribute('name', 'Dariva').oid;
     });
     tearDown(() {
       entries.clear();
@@ -82,6 +85,23 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       Place place = places.firstWhereAttribute('name', placeName);
       expect(place, isNotNull);
       expect(place.city, equals('Sarajevo'));
+      oid = place.oid;
+    });
+    test('Find (not) place by oid', () {
+      Places places = bosnia.places;
+      Place place = places.singleWhereOid(oid);
+      expect(place, isNull);
+    });
+    test('Find place by oid', () {
+      Places places = bosnia.places;
+      Place place = places.singleWhereOid(darivaOid);
+      expect(place, isNotNull);
+      expect(place.name, equals('Dariva'));
+    });
+    test('Find place by oid by searching from countries down', () {
+      Place place = countries.singleDownWhereOid(darivaOid);
+      expect(place, isNotNull);
+      expect(place.name, equals('Dariva'));
     });
     test('Find place by name attribute id error', () {
       var placeName = 'Dariva';
