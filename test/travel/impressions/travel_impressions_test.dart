@@ -51,6 +51,7 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
     test("Not empty entries test", () {
       expect(!entries.isEmpty, isTrue);
     });
+
     test('Find country by code', () {
       var code = 'BA';
       Country country = countries.singleWhereCode(code);
@@ -515,6 +516,23 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(placeCopy.id, isNotNull);
       expect(place.id, equals(placeCopy.id));
     });
+    test('From entries to data in json', () {
+      var json = entries.toJson();
+      expect(json, isNotNull);
+      print(json);
+      entries.displayJson();
+      // copy the displayed json to lib/travel/impressions/json/data.dart
+    });
+    /*
+     * to debug
+    test('From data in json to entries', () {
+      entries.clear();
+      expect(entries.isEmpty, isTrue);
+      entries.fromJsonToData();
+      expect(entries.isEmpty, isFalse);
+      entries.display(title:'From data in json to entries');
+    });
+    */
   });
 }
 
