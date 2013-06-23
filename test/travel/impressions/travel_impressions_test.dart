@@ -523,16 +523,14 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       entries.displayJson();
       // copy the displayed json to lib/travel/impressions/json/data.dart
     });
-    /*
-     * to debug
     test('From data in json to entries', () {
       entries.clear();
       expect(entries.isEmpty, isTrue);
       entries.fromJsonToData();
       expect(entries.isEmpty, isFalse);
-      entries.display(title:'From data in json to entries');
+      entries.display();
     });
-    */
+
   });
 }
 

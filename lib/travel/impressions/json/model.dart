@@ -336,4 +336,3 @@ var travelImpressionsModelJson = r'''
     ]
 }
 ''';
-  
