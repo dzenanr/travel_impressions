@@ -77,13 +77,51 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(country, isNotNull);
       expect(country.code, equals('BA'));
     });
-    test('Find country and place by name', () {
+    test('Find (not) country by name attribute id', () {
+      var name = 'Poland';
+      Country country = countries.singleWhereAttributeId('name', name);
+      expect(country, isNull);
+    });
+    test('Find country and (not) place by name id', () {
+      var countryName = 'Bosnia and Herzegovina';
+      Country country = countries.singleWhereAttributeId('name', countryName);
+
+      var placeName = 'Dariva';
+      Places places = country.places;
+      Place place = places.singleWhereAttributeId('name', placeName);
+      expect(place, isNull);
+    });
+    test('Find country and place by name attribute', () {
+      var countryName = 'Bosnia and Herzegovina';
+      bosnia = countries.firstWhereAttribute('name', countryName);
+      expect(bosnia, isNotNull);
+
+      var placeName = 'Dariva';
+      Places places = bosnia.places;
+      Place place = places.firstWhereAttribute('name', placeName);
+      expect(place, isNotNull);
+      expect(place.city, equals('Sarajevo'));
+    });
+    test('Find country and place by id', () {
       var countryName = 'Bosnia and Herzegovina';
       bosnia = countries.singleWhereAttributeId('name', countryName);
 
       var placeName = 'Dariva';
       Places places = bosnia.places;
-      Place place = places.firstWhereAttribute('name', placeName);
+      Id id = new Id(bosnia.concept);
+      id.setParent('country', bosnia);
+      id.setAttribute('name', placeName);
+      Place place = places.singleWhereId(id);
+      expect(place, isNotNull);
+      expect(place.city, equals('Sarajevo'));
+    });
+    test('Find place by id (method cascades)', () {
+      var placeName = 'Dariva';
+      Places places = bosnia.places;
+      Id id = new Id(bosnia.concept)
+        ..setParent('country', bosnia)
+        ..setAttribute('name', placeName);
+      Place place = places.singleWhereId(id);
       expect(place, isNotNull);
       expect(place.city, equals('Sarajevo'));
       oid = place.oid;
@@ -104,29 +142,13 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(place, isNotNull);
       expect(place.name, equals('Dariva'));
     });
-    test('Find place by name attribute id error', () {
-      var placeName = 'Dariva';
-      Places places = bosnia.places;
-      Place place = places.singleWhereAttributeId('name', placeName);
-      expect(place, isNull);
-    });
-    test('Find place by id', () {
-      var placeName = 'Dariva';
-      Places places = bosnia.places;
-      Id id = new Id(places.concept);
-      id.setAttribute('name', 'Dariva');
-      id.setParent('country', bosnia);
-      Place place = places.singleWhereId(id);
-      expect(place, isNotNull);
-      expect(place.city, equals('Sarajevo'));
-    });
-    test('Find place by id function', () {
+    test('Find place by a specific method', () {
       var placeName = 'Dariva';
       Place place = bosnia.places.findById(placeName, bosnia);
       expect(place, isNotNull);
       expect(place.city, equals('Sarajevo'));
     });
-    test('Find places in Sarajevo', () {
+    test('Select places in Sarajevo', () {
       Places places = bosnia.places.selectWhereAttribute('city', 'Sarajevo');
       expect(places.length, greaterThan(0));
       places.forEach((place) => expect(place.city, equals('Sarajevo')));
