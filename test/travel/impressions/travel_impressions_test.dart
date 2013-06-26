@@ -205,7 +205,6 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(places.errors.toList()[1].category, equals('required'));
       expect(places.errors.toList()[1].message,
           equals('Place.country parent is null.'));
-      places.errors.clear();
     });
     test('Add place unique error', () {
       Places places = bosnia.places;
@@ -221,7 +220,6 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       places.errors.display(title:'Add place unique error');
       expect(places.errors.length, equals(1));
       expect(places.errors.toList()[0].category, equals('unique'));
-      places.errors.clear();
     });
     test('Add place pre validation error', () {
       Places places = bosnia.places;
@@ -238,7 +236,6 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       places.errors.display(title:'Add place pre validation error');
       expect(places.errors.length, equals(1));
       expect(places.errors.toList()[0].category, equals('pre'));
-      places.errors.clear();
     });
     test('Add place', () {
       Places places = bosnia.places;
@@ -287,6 +284,24 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(removed, isTrue);
       expect(oldPlaces.length, equals(--oldPlacesCount));
       expect(bosnia.places.length, equals(--countryPlacesCount));
+    });
+    test('Select places then (not) remove', () {
+      Places oldPlaces = bosnia.places.selectWhere((place) => place.old);
+      expect(oldPlaces.length, greaterThan(0));
+      oldPlaces.forEach((place) => expect(place.description, contains('old')));
+      expect(oldPlaces.source.isEmpty, isFalse);
+      var countryPlacesCount = bosnia.places.length;
+
+      var oldPlacesCount = oldPlaces.length;
+      var placeName = 'Bascarsija';
+      Place place = oldPlaces.findById(placeName, bosnia);
+      expect(place, isNotNull);
+      expect(place.city, equals('Sarajevo'));
+      oldPlaces.propagateToSource = false;
+      var removed = oldPlaces.remove(place);
+      expect(removed, isTrue);
+      expect(oldPlaces.length, equals(--oldPlacesCount));
+      expect(bosnia.places.length, equals(countryPlacesCount));
     });
     test('Update new place id error with try', () {
       Places places = bosnia.places;
@@ -386,7 +401,7 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       //place.display(prefix:'new description: ');
     });
 
-    test('New place doit, undo and redo with action', () {
+    test('New place undo and redo with action', () {
       Places places = bosnia.places;
       var placesCount = places.length;
       var place = new Place(places.concept);
@@ -401,11 +416,10 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
 
       action.undo();
       expect(places.length, equals(--placesCount));
-
       action.redo();
       expect(places.length, equals(++placesCount));
     });
-    test('New place undo and redo with session', () {
+    test('Several undos and redos with session', () {
       Places places = bosnia.places;
       var placesCount = places.length;
       var place = new Place(places.concept);
@@ -414,17 +428,23 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       place.city = 'Sarajevo';
       place.country = bosnia;
 
-      var action = new AddAction(session, places, place);
-      action.doit();
+      var addAction = new AddAction(session, places, place);
+      addAction.doit();
       expect(places.length, equals(++placesCount));
-
-      session.past.undo();
+      var removeAction = new RemoveAction(session, places, place);
+      removeAction.doit();
       expect(places.length, equals(--placesCount));
 
-      session.past.redo();
+      session.past.undo();  // remove
       expect(places.length, equals(++placesCount));
+      session.past.undo(); // add
+      expect(places.length, equals(--placesCount));
+      session.past.redo(); // add
+      expect(places.length, equals(++placesCount));
+      session.past.redo(); // remove
+      expect(places.length, equals(--placesCount));
     });
-    test('Update place undo and redo with session', () {
+    test('Update place description undo and redo with session', () {
       var placeName = 'Dariva';
       Place place = bosnia.places.findById(placeName, bosnia);
       expect(place, isNotNull);
@@ -440,12 +460,11 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       session.past.undo();
       expect(place.description, equals(action.before));
       expect(place.description, equals(descriptionBeforeUpdate));
-
       session.past.redo();
       expect(place.description, equals(action.after));
       expect(place.description, equals(descriptionAfterUpdate));
     });
-    test('transaction', () {
+    test('Transaction undo and redo with session', () {
       Places places = bosnia.places;
       var placesCount = places.length;
       var place1 = new Place(places.concept);
@@ -461,7 +480,6 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
 
       var action1 = new AddAction(session, places, place1);
       var action2 = new AddAction(session, places, place2);
-
       var transaction = new Transaction('two adds on places in bosnia', session);
       transaction.add(action1);
       transaction.add(action2);
@@ -474,13 +492,12 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       placesCount = placesCount - 2;
       expect(places.length, equals(placesCount));
       //places.display(title:'Transaction undone');
-
       session.past.redo();
       placesCount = placesCount + 2;
       expect(places.length, equals(placesCount));
       //places.display(title:'Transaction redone');
     });
-    test('Reactions to place actions', () {
+    test('Reactions to actions', () {
       var reaction = new PlaceReaction();
       expect(reaction, isNotNull);
       models.startActionReaction(reaction);
