@@ -125,7 +125,7 @@ var travelImpressionsModelJson = r'''
                     "essential":true,
                     "sensitive":false,
                     "category":"identifier",
-                    "type":"Email"
+                    "type":"String"
                 },
                 {
                     "sequence":70,
