@@ -36,9 +36,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
 library travel_impressions; 
  
-import "dart:json"; 
-import "dart:math"; 
- 
 import "package:dartling/dartling.dart"; 
  
 part "travel/impressions/json/data.dart"; 
