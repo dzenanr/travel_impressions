@@ -151,18 +151,22 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
     test('Select places in Sarajevo', () {
       Places places = bosnia.places.selectWhereAttribute('city', 'Sarajevo');
       expect(places.length, greaterThan(0));
-      places.forEach((place) => expect(place.city, equals('Sarajevo')));
+      //places.forEach((place) => expect(place.city, equals('Sarajevo')));
+      for (var place in places) {
+        expect(place.city, equals('Sarajevo'));
+      }
     });
     test('Select places by function', () {
       Places places = bosnia.places.selectWhere((place) => place.old);
       expect(places.length, greaterThan(0));
-      places.forEach((place) => expect(place.description, contains('old')));
+      for (var place in places) {
+        expect(place.description, contains('old'));
+      }
     });
     test('Sort places by city in Bosnia and Herzegovina', () {
       bosnia.places.sort(
           (place1, place2) => place1.city.compareTo(place2.city));
-      //bosnia.places.display(
-      //    title:'Sort places by city in Bosnia and Herzegovina');
+      //bosnia.places.display(title:'Sort places by city in Bosnia and Herzegovina');
     });
     test('Order places by code or id in Bosnia and Herzegovina', () {
       Places places = bosnia.places.order();
@@ -252,7 +256,9 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
     test('Select places then add', () {
       Places oldPlaces = bosnia.places.selectWhere((place) => place.old);
       expect(oldPlaces.length, greaterThan(0));
-      oldPlaces.forEach((place) => expect(place.description, contains('old')));
+      for (var place in oldPlaces) {
+        expect(place.description, contains('old'));
+      }
       expect(oldPlaces.source.isEmpty, isFalse);
       var countryPlacesCount = bosnia.places.length;
 
@@ -271,7 +277,9 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
     test('Select places then remove', () {
       Places oldPlaces = bosnia.places.selectWhere((place) => place.old);
       expect(oldPlaces.length, greaterThan(0));
-      oldPlaces.forEach((place) => expect(place.description, contains('old')));
+      for (var place in oldPlaces) {
+        expect(place.description, contains('old'));
+      }
       expect(oldPlaces.source.isEmpty, isFalse);
       var countryPlacesCount = bosnia.places.length;
 
@@ -288,7 +296,9 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
     test('Select places then (not) remove', () {
       Places oldPlaces = bosnia.places.selectWhere((place) => place.old);
       expect(oldPlaces.length, greaterThan(0));
-      oldPlaces.forEach((place) => expect(place.description, contains('old')));
+      for (var place in oldPlaces) {
+        expect(place.description, contains('old'));
+      }
       expect(oldPlaces.source.isEmpty, isFalse);
       var countryPlacesCount = bosnia.places.length;
 
@@ -530,10 +540,12 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(copiedPlaces.isEmpty, isFalse);
       expect(copiedPlaces.length, equals(places.length));
       expect(copiedPlaces, isNot(same(places)));
-      copiedPlaces.forEach((cp) =>
-          expect(cp, equals(places.singleWhereOid(cp.oid))));
-      copiedPlaces.forEach((cp) =>
-          expect(cp, isNot(same(places.singleWhereId(cp.id)))));
+      for (var cp in copiedPlaces) {
+        expect(cp, equals(places.singleWhereOid(cp.oid)));
+      }
+      for (var cp in copiedPlaces) {
+        expect(cp, isNot(same(places.singleWhereId(cp.id))));
+      }
       //copiedPlaces.display(title:'Copied places');
     });
     test('Copy place', () {
