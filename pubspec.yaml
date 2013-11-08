@@ -1,12 +1,13 @@
 name: travel_impressions
-author: Your Name
-homepage: http://ondart.me/
-version: 0.0.1
+version: 1.0.0
+author: Dzenan Ridjanovic <dzenanr@gmail.com>
 description: travel_impressions application that uses dartling for its model.
+homepage: http://ondart.me/
+documentation: http://goo.gl/Fd08zZ
+environment:
+  sdk: '>=0.8.10+8 <2.0.0'
 dependencies:
-  browser: any
-  dartling:
-    git: git://github.com/dzenanr/dartling.git
+  browser: '>=0.9.0 <0.10.0'
+  dartling: '>=1.0.1 <2.0.0'
   dartling_default_app:
     git: git://github.com/dzenanr/dartling_default_app.git
-  
