@@ -14,8 +14,7 @@ genCode() {
   // change dartling to yourDomainName 
   // change Skeleton to YourModelName 
   // change "Skeleton" to "YourModelName" 
-  Model travelImpressionsModel = 
-      fromJsonToModel(travelImpressionsModelJson, travelDomain, "Impressions"); 
+  fromJsonToModel(travelImpressionsModelJson, travelDomain, "Impressions"); 
  
   repo.domains.add(travelDomain); 
  

@@ -4,12 +4,14 @@ part of travel_impressions;
  
 abstract class MessageGen extends ConceptEntity<Message> { 
  
-  MessageGen(Concept concept) : super.of(concept) { 
+  MessageGen(Concept concept) { 
+    this.concept = concept;
     Concept impressionConcept = concept.model.concepts.singleWhereCode("Impression"); 
     setChild("impressions", new Impressions(impressionConcept)); 
   } 
  
-  MessageGen.withId(Concept concept, Traveler traveler, DateTime date) : super.of(concept) { 
+  MessageGen.withId(Concept concept, Traveler traveler, DateTime date) { 
+    this.concept = concept;
     setParent("traveler", traveler); 
     setAttribute("date", date); 
     Concept impressionConcept = concept.model.concepts.singleWhereCode("Impression"); 
@@ -41,7 +43,9 @@ abstract class MessageGen extends ConceptEntity<Message> {
  
 abstract class MessagesGen extends Entities<Message> { 
  
-  MessagesGen(Concept concept) : super.of(concept); 
+  MessagesGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Messages newEntities() => new Messages(concept); 
   Message newEntity() => new Message(concept); 

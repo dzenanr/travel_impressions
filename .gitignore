@@ -1,9 +1,7 @@
-.buildlog
-pubspec.lock
+.DS_Store
+.pub
+build
 packages
-web/out
+pubspec.lock
 *~
-*.js
-*.js.deps
-*.js.map
   

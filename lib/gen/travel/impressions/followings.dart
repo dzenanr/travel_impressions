@@ -4,9 +4,12 @@ part of travel_impressions;
  
 abstract class FollowingGen extends ConceptEntity<Following> { 
  
-  FollowingGen(Concept concept) : super.of(concept); 
+  FollowingGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  FollowingGen.withId(Concept concept, Traveler follows, Traveler followedBy) : super.of(concept) { 
+  FollowingGen.withId(Concept concept, Traveler follows, Traveler followedBy) { 
+    this.concept = concept;
     setParent("follows", follows); 
     setParent("followedBy", followedBy); 
   } 
@@ -27,7 +30,9 @@ abstract class FollowingGen extends ConceptEntity<Following> {
  
 abstract class FollowingsGen extends Entities<Following> { 
  
-  FollowingsGen(Concept concept) : super.of(concept); 
+  FollowingsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Followings newEntities() => new Followings(concept); 
   Following newEntity() => new Following(concept); 

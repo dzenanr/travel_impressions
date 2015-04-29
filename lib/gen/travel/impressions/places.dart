@@ -4,14 +4,16 @@ part of travel_impressions;
  
 abstract class PlaceGen extends ConceptEntity<Place> { 
  
-  PlaceGen(Concept concept) : super.of(concept) { 
+  PlaceGen(Concept concept) { 
+    this.concept = concept;
     Concept impressionConcept = concept.model.concepts.singleWhereCode("Impression"); 
     setChild("impressions", new Impressions(impressionConcept)); 
     Concept webLinkConcept = concept.model.concepts.singleWhereCode("WebLink"); 
     setChild("webLinks", new WebLinks(webLinkConcept)); 
   } 
  
-  PlaceGen.withId(Concept concept, Country country, String name) : super.of(concept) { 
+  PlaceGen.withId(Concept concept, Country country, String name) { 
+    this.concept = concept;
     setParent("country", country); 
     setAttribute("name", name); 
     Concept impressionConcept = concept.model.concepts.singleWhereCode("Impression"); 
@@ -47,7 +49,9 @@ abstract class PlaceGen extends ConceptEntity<Place> {
  
 abstract class PlacesGen extends Entities<Place> { 
  
-  PlacesGen(Concept concept) : super.of(concept); 
+  PlacesGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Places newEntities() => new Places(concept); 
   Place newEntity() => new Place(concept); 

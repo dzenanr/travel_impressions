@@ -4,12 +4,14 @@ part of travel_impressions;
  
 abstract class CountryGen extends ConceptEntity<Country> { 
  
-  CountryGen(Concept concept) : super.of(concept) { 
+  CountryGen(Concept concept) { 
+    this.concept = concept;
     Concept placeConcept = concept.model.concepts.singleWhereCode("Place"); 
     setChild("places", new Places(placeConcept)); 
   } 
  
-  CountryGen.withId(Concept concept, String name) : super.of(concept) { 
+  CountryGen.withId(Concept concept, String name) { 
+    this.concept = concept;
     setAttribute("name", name); 
     Concept placeConcept = concept.model.concepts.singleWhereCode("Place"); 
     setChild("places", new Places(placeConcept)); 
@@ -31,7 +33,9 @@ abstract class CountryGen extends ConceptEntity<Country> {
  
 abstract class CountriesGen extends Entities<Country> { 
  
-  CountriesGen(Concept concept) : super.of(concept); 
+  CountriesGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Countries newEntities() => new Countries(concept); 
   Country newEntity() => new Country(concept); 

@@ -4,7 +4,8 @@ part of travel_impressions;
  
 abstract class TravelerGen extends ConceptEntity<Traveler> { 
  
-  TravelerGen(Concept concept) : super.of(concept) { 
+  TravelerGen(Concept concept) { 
+    this.concept = concept;
     Concept messageConcept = concept.model.concepts.singleWhereCode("Message"); 
     setChild("messages", new Messages(messageConcept)); 
     Concept followingConcept = concept.model.concepts.singleWhereCode("Following"); 
@@ -12,7 +13,8 @@ abstract class TravelerGen extends ConceptEntity<Traveler> {
     setChild("follows", new Followings(followingConcept)); 
   } 
  
-  TravelerGen.withId(Concept concept, String email) : super.of(concept) { 
+  TravelerGen.withId(Concept concept, String email) { 
+    this.concept = concept;
     setAttribute("email", email); 
     Concept messageConcept = concept.model.concepts.singleWhereCode("Message"); 
     setChild("messages", new Messages(messageConcept)); 
@@ -53,7 +55,9 @@ abstract class TravelerGen extends ConceptEntity<Traveler> {
  
 abstract class TravelersGen extends Entities<Traveler> { 
  
-  TravelersGen(Concept concept) : super.of(concept); 
+  TravelersGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Travelers newEntities() => new Travelers(concept); 
   Traveler newEntity() => new Traveler(concept); 

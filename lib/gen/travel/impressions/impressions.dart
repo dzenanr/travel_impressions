@@ -4,9 +4,12 @@ part of travel_impressions;
  
 abstract class ImpressionGen extends ConceptEntity<Impression> { 
  
-  ImpressionGen(Concept concept) : super.of(concept); 
+  ImpressionGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  ImpressionGen.withId(Concept concept, Place place, Message message) : super.of(concept) { 
+  ImpressionGen.withId(Concept concept, Place place, Message message) { 
+    this.concept = concept;
     setParent("place", place); 
     setParent("message", message); 
   } 
@@ -27,7 +30,9 @@ abstract class ImpressionGen extends ConceptEntity<Impression> {
  
 abstract class ImpressionsGen extends Entities<Impression> { 
  
-  ImpressionsGen(Concept concept) : super.of(concept); 
+  ImpressionsGen(Concept concept) {
+    this.concept = concept;
+  }
  
   Impressions newEntities() => new Impressions(concept); 
   Impression newEntity() => new Impression(concept); 

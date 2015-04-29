@@ -1,6 +1,6 @@
 # travel_impressions 
 
-**Categories**: dartling, education, class models, web components.
+**Categories**: dartling, education, class models, model design.
 
 ## Description 
 travel_impressions project uses [dartling] 

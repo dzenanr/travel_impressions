@@ -4,9 +4,12 @@ part of travel_impressions;
  
 abstract class WebLinkGen extends ConceptEntity<WebLink> { 
  
-  WebLinkGen(Concept concept) : super.of(concept); 
+  WebLinkGen(Concept concept) {
+    this.concept = concept;
+  }
  
-  WebLinkGen.withId(Concept concept, Uri url) : super.of(concept) { 
+  WebLinkGen.withId(Concept concept, Uri url) { 
+    this.concept = concept;
     setAttribute("url", url); 
   } 
  
@@ -33,7 +36,9 @@ abstract class WebLinkGen extends ConceptEntity<WebLink> {
  
 abstract class WebLinksGen extends Entities<WebLink> { 
  
-  WebLinksGen(Concept concept) : super.of(concept); 
+  WebLinksGen(Concept concept) {
+    this.concept = concept;
+  }
  
   WebLinks newEntities() => new WebLinks(concept); 
   WebLink newEntity() => new WebLink(concept); 

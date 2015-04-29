@@ -1,11 +1,11 @@
 name: travel_impressions
-version: 1.0.0
+version: 2.0.1
 author: Dzenan Ridjanovic <dzenanr@gmail.com>
 description: travel_impressions application that uses dartling for its model.
 homepage: http://ondart.me/
-documentation: http://goo.gl/Fd08zZ
+documentation: http://goo.gl/qE0xTa
 environment:
-  sdk: '>=0.8.10+8 <2.0.0'
+  sdk: '>=1.9.3 <2.0.0'
 dependencies:
   browser: any
   dartling: any

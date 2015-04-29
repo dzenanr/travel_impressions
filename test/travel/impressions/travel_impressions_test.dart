@@ -1,10 +1,8 @@
 
 // test/travel/impressions/travel_impressions_test.dart
 
-import "package:unittest/unittest.dart";
-
+import "package:test/test.dart";
 import "package:dartling/dartling.dart";
-
 import "package:travel_impressions/travel_impressions.dart";
 
 class PlaceReaction implements ActionReactionApi {
@@ -29,16 +27,13 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
   Country bosnia;
   Oid darivaOid;
   Oid oid;
-  Travelers travelers;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
       models = repo.getDomainModels(domainCode);
       session = models.newSession();
       entries = models.getModelEntries(modelCode);
-      expect(entries, isNotNull);
 
       countries = entries.countries;
-      travelers = entries.travelers;
       initTravelImpressions(entries);
 
       var code = 'BA';
@@ -138,7 +133,7 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       expect(place.name, equals('Dariva'));
     });
     test('Find place by oid by searching from countries down', () {
-      Place place = countries.singleDownWhereOid(darivaOid);
+      Place place = countries.internalSingle(darivaOid);
       expect(place, isNotNull);
       expect(place.name, equals('Dariva'));
     });
@@ -575,9 +570,10 @@ testTravelImpressions(Repo repo, String domainCode, String modelCode) {
       // copy the displayed json to lib/travel/impressions/json/data.dart
     });
     test('From data in json to entries', () {
+      var json = entries.toJson();
       entries.clear();
       expect(entries.isEmpty, isTrue);
-      entries.fromJsonToData();
+      entries.fromJson(json);
       expect(entries.isEmpty, isFalse);
       entries.display();
     });
